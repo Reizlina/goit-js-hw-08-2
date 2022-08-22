@@ -510,14 +510,13 @@ var _lodashThrottle = require("lodash.throttle");
 var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 const iframe = document.querySelector("iframe");
 const player = new (0, _playerDefault.default)(iframe);
+player.on("timeupdate", (0, _lodashThrottleDefault.default)((e)=>{
+    localStorage.setItem("videoplayer-current-time", e.seconds);
+}, 1000));
 const onPlay = function() {
     const time = localStorage.getItem("videoplayer-current-time");
     player.setCurrentTime(time);
 };
-player.on("timeupdate", (0, _lodashThrottleDefault.default)((e)=>{
-    console.log(e.seconds);
-    localStorage.setItem("videoplayer-current-time", e.seconds);
-}, 1000));
 player.on("play", onPlay);
 
 },{"@vimeo/player":"kmmUG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","lodash.throttle":"bGJVT"}],"kmmUG":[function(require,module,exports) {
