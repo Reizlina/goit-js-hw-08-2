@@ -510,14 +510,12 @@ var _lodashThrottle = require("lodash.throttle");
 var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 const iframe = document.querySelector("iframe");
 const player = new (0, _playerDefault.default)(iframe);
-player.on("timeupdate", (0, _lodashThrottleDefault.default)((e)=>{
-    localStorage.setItem("videoplayer-current-time", e.seconds);
-}, 1000));
-const onPlay = function() {
-    const time = localStorage.getItem("videoplayer-current-time");
-    player.setCurrentTime(time);
+const onPlay = function(data) {
+    localStorage.setItem("videoplayer-current-time", data.seconds);
 };
-player.on("play", onPlay);
+player.on("timeupdate", (0, _lodashThrottleDefault.default)(onPlay, 1000));
+let time = localStorage.getItem("videoplayer-current-time");
+player.setCurrentTime(time);
 
 },{"@vimeo/player":"kmmUG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","lodash.throttle":"bGJVT"}],"kmmUG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

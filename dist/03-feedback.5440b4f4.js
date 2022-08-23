@@ -527,12 +527,13 @@ function onFormSubmit(e) {
         message: form.message.value
     };
     console.log(obj);
+    form.email.value;
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
 }
-function onFormInput(e) {
-    const { name , value  } = e.target;
-    formData[name] = value;
+function onFormInput() {
+    formData.email = form.elements.email.value;
+    formData.message = form.elements.message.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 form.addEventListener("submit", onFormSubmit);
